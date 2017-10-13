@@ -51,6 +51,7 @@ function victoryMessage() {
 	message.text(winMessage);
 	$("#dice").append(message);
 	setTimeout(function(){
+		clear();
 		gameStart();
 		initClick();
 	}, 3000);
@@ -62,6 +63,7 @@ function defeatMessage() {
 	message.text(lossMessage);
 	$("#dice").append(message);
 	setTimeout(function(){
+		clear();
 		gameStart();
 		initClick();
 	}, 3000);
@@ -86,14 +88,13 @@ function initClick() {
 		// alert("You Lose!");
 		losses++;
 		$("#lossDisplay").text(losses);
-		clear();
+
 		defeatMessage();
 	}else if (currentGuess === currentNumber){
 		//game over
 		// alert("You Win!");
 		wins++;
 		$("#winDisplay").text(wins);
-		clear();
 		victoryMessage();
 	}
 })

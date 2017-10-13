@@ -4,6 +4,8 @@ var losses = 0;
 var currentNumber = 0;
 var currentGuess = 0;
 var difficulty = 4;
+var winMessage = "Congratulations! You Win!";
+var lossMessage = "You lose...try again!";
 
 
 
@@ -30,6 +32,7 @@ function gameStart() {
 	imageDice.attr("data-dicevalue",  Math.floor(Math.random() * (12 - 1 + 1)) + 1);
 	//add completed crystal to div
 	$("#dice").append(imageDice);
+	
 }
 
 
@@ -41,14 +44,36 @@ function clear() {
 	currentNumber = 0;
 
 }
+function victoryMessage() {
+	$("#dice").empty();
+	var message = $("<h1>");
+	message.addClass("youwin");
+	message.text(winMessage);
+	$("#dice").append(message);
+	setTimeout(function(){
+		gameStart();
+		initClick();
+	}, 3000);
+}
+function defeatMessage() {
+	$("#dice").empty();
+	var message = $("<h1>");
+	message.addClass("youlose");
+	message.text(lossMessage);
+	$("#dice").append(message);
+	setTimeout(function(){
+		gameStart();
+		initClick();
+	}, 3000);
+}
+
 gameStart();
 initClick();
 
 
-
 // Onclick function
 function initClick() {
-$(".dice-image").on("click", function() {
+	$(".dice-image").on("click", function() {
  	//get dice value from img data
  	var crystalValue = ($(this).attr("data-dicevalue"));
  	crystalValue = parseInt(crystalValue);
@@ -62,16 +87,14 @@ $(".dice-image").on("click", function() {
 		losses++;
 		$("#lossDisplay").text(losses);
 		clear();
-		gameStart();
-		initClick();
+		defeatMessage();
 	}else if (currentGuess === currentNumber){
 		//game over
 		// alert("You Win!");
 		wins++;
 		$("#winDisplay").text(wins);
 		clear();
-		gameStart();
-		initClick();
+		victoryMessage();
 	}
 })
 

@@ -12,15 +12,23 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
-	<h1>Number to Guess: <span id="number-to-guess"></span></h1>
+	<div class="container">
+		<h1>Number to Roll: <span id="goalNumber"></span></h1>
 
+		<h2>Current Total: <span id="userGuess"></span></h2>
 
+		<h3>Wins: <span id="winDisplay">0</span></h3>
+		<h3>Losses: <span id="lossDisplay">0</span></h3>
+	</div>
 
 	<!-- Div where crystals will be added -->
-	<div id="crystals">
+	<div class="container">
+		<div id="dice">
+		</div>
 	</div>
 
 	<!-- jQuery cdn -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 </html>
